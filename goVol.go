@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"os/exec"
 	"bytes"
+	"strings"
 )
 
 type NugArg struct {
@@ -29,8 +30,13 @@ func (nd *NugVol) GetDataLen(dataArg *NugArg, reply *string) error {
 func (nd *NugVol) LoadData(dataArg *NugArg, reply *string) error {
 	nd.SavedData = dataArg.TheData
 
-	//we're going to hack it for now
-	nd.PathToFile = "/space/m57/pat-2009-12-03.mddramimage"
+    if len(strings.Split(string(dataArg.TheData),":")) == 1 {
+		fmt.Println("[-] Data location did not contain type. Assuming file.")
+    }
+    fmt.Print("[-] Loading data from:  " + string(dataArg.TheData))
+
+    nd.PathToFile = string(dataArg.TheData)
+
 
 	*reply = "done"
 	return nil
