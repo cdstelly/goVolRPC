@@ -33,7 +33,7 @@ func (nd *NugVol) LoadData(dataArg *NugArg, reply *string) error {
     if len(strings.Split(string(dataArg.TheData),":")) == 1 {
 		fmt.Println("[-] Data location did not contain type. Assuming file.")
     }
-    fmt.Print("[-] Loading data from:  " + string(dataArg.TheData))
+    fmt.Println("[-] Loading data from:  " + string(dataArg.TheData))
 
     nd.PathToFile = string(dataArg.TheData)
 
